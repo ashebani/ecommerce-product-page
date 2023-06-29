@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Header from "./components/Header";
+import Main from "./components/Main";
 
 function App() {
+  const [showCart, setShowCart] = useState(false);
+  const [cartItems, setaCartItems] = useState({
+    name: "",
+    price: 125,
+    quantity: 0,
+  });
+  const [counter, setCounter] = useState(0);
+
+  const addToCart = () => {
+    setaCartItems({ ...cartItems, quantity: cartItems.quantity + counter });
+    setCounter(0);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="grid max-w-5xl mx-auto">
+      <Header
+        setCartItems={setaCartItems}
+        setShowCart={setShowCart}
+        showCart={showCart}
+        cartItems={cartItems}
+      />
+      <Main counter={counter} setCounter={setCounter} addToCart={addToCart} />
     </div>
   );
 }
