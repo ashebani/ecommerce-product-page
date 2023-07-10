@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import Test from "./components/Test";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -23,7 +24,15 @@ function App() {
         showCart={showCart}
         cartItems={cartItems}
       />
-      <Main counter={counter} setCounter={setCounter} addToCart={addToCart} />
+      <Main
+        showCart={showCart}
+        counter={counter}
+        setCounter={setCounter}
+        addToCart={addToCart}
+      />
+      {/* {["Collections", "Men", "Women", "About", "Contact"].map((item, idx) => (
+        <Test color={`bg-blue-${idx}`} id={item} />
+      ))} */}
     </div>
   );
 }

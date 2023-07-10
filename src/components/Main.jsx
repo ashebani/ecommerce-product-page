@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 
-const Main = ({ counter, setCounter, addToCart }) => {
+const Main = ({ counter, setCounter, addToCart, showCart }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mainPicture, setMainPicture] = useState(1);
 
   return (
-    <main className="mt-20 md:mt-0">
+    <main className="h-[78vh] mt-20 md:mt-0">
       <div className="grid grid-cols-2 md:grid-cols-1">
         {/* Image section */}
-        <section className="grid items-start gap-8 px-10 md:px-0 ">
-          <div className="relative">
+        <section className="flex flex-col md:grid gap-8 px-10 md:px-0 ">
+          <div style={{ position: showCart ? "static" : "relative" }}>
             <img
-              onClick={() => setIsOpen(true)}
               className="md:h-80 object-cover object-center md:w-full rounded-2xl cursor-pointer md:cursor-auto md:rounded-none"
+              onClick={() => setIsOpen(true)}
               srcSet={require(`../assets/images/image-product-${mainPicture}.jpg`)}
               alt=""
             />
             <button
-              className="group hidden md:block absolute top-1/2 -translate-y-1/2 left-2 bg-white rounded-full p-3"
+              style={{ display: showCart ? "none" : null }}
+              className="group hidden md:block md:absolute top-1/2 -translate-y-1/2 left-2 bg-white rounded-full p-3"
               onClick={() => {
                 if (mainPicture === 1) {
                   setMainPicture(4);
@@ -38,6 +39,7 @@ const Main = ({ counter, setCounter, addToCart }) => {
               </svg>
             </button>
             <button
+              style={{ display: showCart ? "none" : null }}
               className="group hidden md:block absolute top-1/2 -translate-y-1/2 right-2 bg-white rounded-full p-3"
               onClick={() => {
                 if (mainPicture === 4) {
@@ -63,13 +65,14 @@ const Main = ({ counter, setCounter, addToCart }) => {
               </svg>
             </button>
           </div>
-          <div className="flex justify-between md:hidden ">
+
+          <div className="flex w-full lg:gap-6 justify-between md:hidden ">
             {Array(4)
               .fill("")
               .map((item, idx) => (
                 <img
                   onClick={() => setMainPicture(idx + 1)}
-                  className={`w-20 h-20 rounded-lg hover:opacity-50 ${
+                  className={`w-20 lg:h-full lg:w-full h-20 rounded-lg hover:opacity-50 ${
                     idx + 1 === mainPicture
                       ? "border-[3px] border-primaryOrange opacity-60"
                       : ""
@@ -83,13 +86,13 @@ const Main = ({ counter, setCounter, addToCart }) => {
         </section>
         {/* Product Info section */}
         <section className="p-10 md:p-6">
-          <h4 className="text-primaryOrange font-bold uppercase text-sm tracking-widest">
+          <h4 className="text-primaryOrange font-bold uppercase text-sm  tracking-widest">
             Sneaker Company
           </h4>
-          <h1 className="text-5xl md:text-2xl md:pr-10 font-bold pt-5 md:pt-3">
+          <h1 className="text-5xl md:text-2xl lg:text-3xl md:pr-10 font-bold pt-5 md:pt-3">
             Fall Limited Edition Sneakers
           </h1>
-          <p className="pt-10 md:pt-4 md:text-sm md:leading-normal text-secondaryDarkGrayishBlue">
+          <p className="pt-10 lg:pt-6 md:pt-4 md:text-sm md:leading-normal text-secondaryDarkGrayishBlue">
             These low-profile sneakers are your perfect casual wear companion.
             Featuring a durable rubber outer sole, they’ll withstand everything
             the weather can offer.
@@ -233,10 +236,6 @@ const Main = ({ counter, setCounter, addToCart }) => {
                   />
                 ))}
             </div>
-            {/* <div
-              className="h-[100vh] w-[100vw]  -z-10"
-              onClick={() => setIsOpen(false)}
-            ></div> */}
           </div>
         </div>
       ) : (
