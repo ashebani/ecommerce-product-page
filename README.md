@@ -37,8 +37,8 @@ Your users should be able to:
 
 ### Links
 
-- Solution URL: (https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9)
-- Live Site URL: (https://interactive-comments-section-flame-chi.vercel.app/)
+- Solution URL: (https://www.frontendmentor.io/solutions/ecommerce-product-page-XEfauITGJn)
+- Live Site URL: (https://ecommerce-product-page-iota-eight.vercel.app/)
 
 ## My process
 
